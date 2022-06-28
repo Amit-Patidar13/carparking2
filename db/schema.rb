@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_24_142644) do
+ActiveRecord::Schema.define(version: 2022_06_28_141026) do
 
-  create_table "parking_slots", force: :cascade do |t|
-    t.string "availability"
+  create_table "booking_slots", force: :cascade do |t|
+    t.boolean "status"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_booking_slots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,18 +36,5 @@ ActiveRecord::Schema.define(version: 2022_06_24_142644) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vehicles", force: :cascade do |t|
-    t.integer "vehicle_no"
-    t.string "company"
-    t.string "model"
-    t.integer "user_id", null: false
-    t.integer "parking_slot_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["parking_slot_id"], name: "index_vehicles_on_parking_slot_id"
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
-  end
-
-  add_foreign_key "vehicles", "parking_slots"
-  add_foreign_key "vehicles", "users"
+  add_foreign_key "booking_slots", "users"
 end
