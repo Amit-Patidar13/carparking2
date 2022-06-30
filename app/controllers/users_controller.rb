@@ -11,4 +11,5 @@ class UsersController < ApplicationController
   def my_bookings
     @my_bookings = BookingSlot.where(user_id: current_user.id)
   end
+
 end

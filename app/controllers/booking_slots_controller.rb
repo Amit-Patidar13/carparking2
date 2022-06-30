@@ -1,11 +1,10 @@
 class BookingSlotsController < ApplicationController
 
   def index
-    @bookings = BookingSlot.where(status: false)
+    @bookings = current_user.admin? ? BookingSlot.all : BookingSlot.where(status: false)
   end
 
   def book
-    debugger
     booking = BookingSlot.find_by(id: params[:id])
     if params[:is_book_request] == 'true'
       booking.update(status: true, user_id: current_user.id)
