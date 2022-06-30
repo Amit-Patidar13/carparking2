@@ -1,0 +1,15 @@
+<table class="table table-striped">                         
+  <tr>                          
+    <th>Booking_id</th>
+    <th>Status</th>
+    <th>Book Item</th>
+  </tr>
+<% @bookings.each do |booking| %>     
+  <tr>
+    
+    <td><%= booking.id %></td>
+    <td><%= booking.status %></td>  
+    <td><%= link_to "Book", book_slot_path(id: booking.id, is_book_request: true), method: :put%>
+  </tr>
+<% end %>                        
+</table> 
