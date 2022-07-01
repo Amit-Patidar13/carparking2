@@ -25,6 +25,8 @@ class BookingSlotsController < ApplicationController
   #   if @booking.save
   #     flash[:notice] = "Booking "
   # end
+
+
 end
 
 

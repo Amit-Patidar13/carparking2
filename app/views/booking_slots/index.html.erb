@@ -3,13 +3,27 @@
     <th>Booking_id</th>
     <th>Status</th>
     <th>Book Item</th>
+    <% if current_user.admin? %>
+      <th> View Details</th>
+    <% end %>
   </tr>
 <% @bookings.each do |booking| %>     
   <tr>
     
     <td><%= booking.id %></td>
-    <td><%= booking.status %></td>  
-    <td><%= link_to "Book", book_slot_path(id: booking.id, is_book_request: true), method: :put%>
+    <td><%= booking.status %></td> 
+    <td>
+      <% if booking.status == false%>
+        <%= link_to "Book", book_slot_path(id: booking.id, is_book_request: true), method: :put%>
+      <% end %>
+    </td>
+    <% if current_user.admin? %>
+      <td>
+        <% if booking.status == true %>
+          <%= link_to "Details", user_show_path(booking.user_id)%>
+        <% end %>  
+      </td>
+    <% end %>
   </tr>
 <% end %>                        
 </table> 
