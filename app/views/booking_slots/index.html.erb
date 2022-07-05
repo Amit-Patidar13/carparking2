@@ -7,20 +7,20 @@
       <th> View Details</th>
     <% end %>
   </tr>
-<% @bookings.each do |booking| %>     
+<% @booking_slots.each do |booking_slot| %>     
   <tr>
     
-    <td><%= booking.id %></td>
-    <td><%= booking.status %></td> 
+    <td><%= booking_slot.id %></td>
+    <td><%= booking_slot.status %></td> 
     <td>
-      <% if booking.status == false%>
-        <%= link_to "Book", book_slot_path(id: booking.id, is_book_request: true), method: :put%>
+      <% if booking_slot.status == false%>
+        <%= link_to "Book", book_slot_path(id: booking_slot.id, is_book_request: true), method: :put%>
       <% end %>
     </td>
     <% if current_user.admin? %>
       <td>
-        <% if booking.status == true %>
-          <%= link_to "Details", user_show_path(booking.user_id)%>
+        <% if booking_slot.status == true %>
+          <%= link_to "Details", user_show_path(id: booking_slot.user_id, booking_slot_id: booking_slot.id)%>
         <% end %>  
       </td>
     <% end %>

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @booking_slot_id = params[:booking_slot_id]
   end
 
   def my_bookings

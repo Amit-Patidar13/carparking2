@@ -4,11 +4,14 @@
     <th>address</th>
     <th>contact_no:</th>
     <th>vehicle_no:</th>
+    <th>Action</th>
   </tr>  
   <tr> 
     <td><%= @user.name %></td>
     <td><%= @user.address %></td> 
     <td><%= @user.contact_no %></td>
-    <td><%= @user.vehicle_no %></td>        
-  </tr>                       
+    <td><%= @user.vehicle_no %></td>  
+    <td><%= link_to "Un Book", book_slot_path(id: @booking_slot_id, is_book_request: false), method: :put%>
+  </tr>    
+
 </table> 

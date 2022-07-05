@@ -1,7 +1,7 @@
 class BookingSlotsController < ApplicationController
 
   def index
-    @bookings = current_user.admin? ? BookingSlot.all : BookingSlot.where(status: false)
+    @booking_slots = current_user.admin? ? BookingSlot.all : BookingSlot.where(status: false)
   end
 
   def book
@@ -11,7 +11,7 @@ class BookingSlotsController < ApplicationController
       redirect_to root_path
     else
       booking.update(status: false, user_id: nil)
-      redirect_to my_bookings_path
+      redirect_to root_path
     end
   end 
 
