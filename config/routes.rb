@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   }
   get '/my_bookings', to: 'users#my_bookings', as: :my_bookings
   put '/book_slot/:id', to: 'booking_slots#book', as: :book_slot
-  get 'user/:id', to: 'users#show', as: :user_show  
+  get '/book_slot', to: 'booking_slots#new', as: :new_book_slot
+  get 'user/:id', to: 'users#show', as: :user_show
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

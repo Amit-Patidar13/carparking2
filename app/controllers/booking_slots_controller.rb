@@ -7,18 +7,19 @@ class BookingSlotsController < ApplicationController
   def book
     booking = BookingSlot.find_by(id: params[:id])
     if params[:is_book_request] == 'true'
-      booking.update(status: true, user_id: current_user.id)
-      redirect_to root_path
+      user_id = current_user.admin? ? params[:user_id] : current_user.id
+      booking.update(status: true, user_id: user_id)
     else
       booking.update(status: false, user_id: nil)
-      redirect_to root_path
     end
-  end 
+    redirect_to root_path
+  end
+end 
 
 
-  # def new
-  #   @booking = BookingSlot.new
-  # end
+  def new
+    @booking = BookingSlot.new
+  end
 
   # def create
   #   @booking = BookingSlot.new(bookingslot_params)
@@ -27,8 +28,7 @@ class BookingSlotsController < ApplicationController
   # end
 
 
-end
-
+# end
 
 # def create   
 #   @product = Product.new(product_params)   
