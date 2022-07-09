@@ -7,7 +7,7 @@ class BookingSlotsController < ApplicationController
   def book
     booking = BookingSlot.find_by(id: params[:id])
     if params[:is_book_request] == 'true'
-      user_id = current_user.admin? ? params[:user_id] : current_user.id
+      user_id = current_user.admin? ? params[:users] : current_user.id
       booking.update(status: true, user_id: user_id)
     else
       booking.update(status: false, user_id: nil)
@@ -18,7 +18,6 @@ end
 
 
   def new
-    @booking = BookingSlot.new
   end
 
   # def create

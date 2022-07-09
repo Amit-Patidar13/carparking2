@@ -15,7 +15,7 @@
     <td>
       <% if booking_slot.status == false%>
         <% if current_user.admin?%>
-          <%= link_to "Book", new_book_slot_path, remote: true, class: 'btn btn-primary btn-lg'%>
+          <%= link_to "Book", new_book_slot_path(booking_slot_id: booking_slot.id), remote: true, class: 'btn btn-primary btn-lg'%>
         <%else%>
           <%= link_to "Book", book_slot_path(id: booking_slot.id, is_book_request: true), method: :put%>
         <% end %>
@@ -33,7 +33,6 @@
 </table> 
 
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= render 'new' %>
 </div>
 
 

@@ -6,10 +6,13 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-      here form will come
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary">Save</button>
+      <div class="field">     
+        <%= form_tag book_slot_path(params[:booking_slot_id], is_book_request: 'true'), method: :put do %> 
+          <%= label_tag 'Users' %>
+          <%= select_tag "users", options_from_collection_for_select(User.all, "id", "name") %>
+          <%= submit_tag 'Save' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
